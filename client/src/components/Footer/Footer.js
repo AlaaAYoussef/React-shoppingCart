@@ -1,9 +1,10 @@
 import React from 'react'
 import '../../css/Footer/Footer.css'
+import { staticData } from '../../staticData'
 
  function Footer() {
   return (
-    <footer>&copy; CopyWrite Alaa Youssef 2022</footer>
+    <footer>{staticData.footer}</footer>
   )
 }
 export default Footer
