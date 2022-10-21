@@ -2,7 +2,7 @@
     {
         "id":"id1",
         "title":"elevate creame",
-        "imgURL":"/images/product-one.png",
+        "imgURL": "/images/product-one.png",
         "desc":"This is product one",
         "price":40,
         "sizes":["L","XL"]
@@ -11,7 +11,7 @@
         
         "id":"id2",
         "title":"sanDisk",
-        "imgURL":"/images/product-two.png",
+        "imgURL":"/images/product-two.PNG",
         "desc":"This is product two",
         "price":60,
         "sizes":["S","2X"]
@@ -20,7 +20,7 @@
         
         "id":"id3",
         "title":"sport watch",
-        "imgURL":"/images/product-three.png",
+        "imgURL":"/images/product-three.PNG",
         "desc":"This is product three",
         "price":90,
         "sizes":["3X","S","XL"]
@@ -29,7 +29,7 @@
         
         "id":"id4",
         "title":"face syrum",
-        "imgURL":"/images/product-four.png",
+        "imgURL":"/images/product-four.PNG",
         "desc":"This is product four",
         "price":150,
         "sizes":["2X","L","XL"]
