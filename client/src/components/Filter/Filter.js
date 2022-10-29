@@ -8,7 +8,7 @@ function Filter(props) {
         <div className='number-of-products'>Number Of Products : 4 Products</div>
         <div className='filter-by-size'>
             <span>Filter</span>
-            <select className='filter-select'>
+            <select className='filter-select' value={props.size} onChange={props.handleFilterBySize}>
                 <option value="ALL">ALL</option>
                 <option value="S">S</option>
                 <option value="L">L</option>
@@ -17,7 +17,7 @@ function Filter(props) {
                 <option value="3X">3X</option>
             </select>
         </div>
-        <div className='filter-by-order'>
+        <div className='filter-by-order' value={props.order} onChange={props.handleFilterByOrder}>
             <span>Order</span>
             <select>
                 <option>Latest</option>
