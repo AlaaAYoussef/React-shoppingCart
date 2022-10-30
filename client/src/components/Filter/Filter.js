@@ -5,7 +5,7 @@ function Filter(props) {
   return (
     <div className='filter-wrapper'>
         <h2 className='filter-title'>Filter</h2>
-        <div className='number-of-products'>Number Of Products : 4 Products</div>
+        <div className='number-of-products'>Number Of Products : {props.productsLength} Products</div>
         <div className='filter-by-size'>
             <span>Filter</span>
             <select className='filter-select' value={props.size} onChange={props.handleFilterBySize}>
