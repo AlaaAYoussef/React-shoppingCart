@@ -6,11 +6,13 @@ import Filter from "./components/Filter/Filter";
 import data from "./data.json";
 import Cart from "./components/Cart/Cart";
 
+
 function App() {
   const [products, setProducts] = useState(data);
   const [size, setSize] = useState("");
   const [order, setOrder] = useState("");
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems'))|| []);
+ 
 
   const handleFilterBySize = (e) => {
     setSize(e.target.value);
@@ -78,6 +80,7 @@ function App() {
           />
         </div>
         <Cart cartItems={cartItems} removeFromCart={removeFromCart}/>
+     
       </main>
       <Footer />
     </div>
