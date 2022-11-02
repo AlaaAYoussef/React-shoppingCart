@@ -1,8 +1,10 @@
 import React from 'react'
 import '../../css/Filter/Filter.css'
+import Slide from 'react-reveal/Slide';
 
 function Filter(props) {
   return (
+    <Slide left>
     <div className='filter-wrapper'>
         <h2 className='filter-title'>Filter</h2>
         <div className='number-of-products'>Number Of Products : {props.productsLength} Products</div>
@@ -27,6 +29,7 @@ function Filter(props) {
         </div>
         
     </div>
+    </Slide>
   )
 }
 
