@@ -41,7 +41,7 @@ import fetchProducts from "../../store/actions/productsAction";
   );
 }
 const mapStateToProps=(state)=>{
-  return {products:state.products.products}
+  return {products:state.products.filteredProducts}
   
 }
 
