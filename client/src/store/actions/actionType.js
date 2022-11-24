@@ -1,3 +1,6 @@
 export const FETCH_PRODUCTS = "FETCH_PRODUCTS"
 export const FILTERBYSIZE = "FILTERBYSIZE"
 export const FILTERBYORDER="FILTERBYORDER"
+
+export const ADD_CART = "ADD_CART"
+export const REMOVE_CART="REMOVE_CART"
