@@ -1,25 +1,24 @@
-import React, { useEffect, useState,componentDidMount} from "react";
+import React, { componentDidUpdate,componentDidMount, useState,componentWillReceiveProps, useEffect} from 'react';
 import '../../css/Products/Products.css'
 import ProductModal from './ProductModal'
 import Bounce from 'react-reveal/Bounce';
-import {connect,useDispatch} from 'react-redux'
-import fetchProducts from "../../store/actions/productsAction";
+import {connect} from 'react-redux'
+import {fetchProducts} from "../../store/actions/productsAction";
+import {addToCart} from '../../store/actions/cartAction'
 
 
-  function Products(props) {
+function Products(props) {
 
-  
-   const [product,setProduct] =useState("")
-  const openModal = (product)=>{
+const [product,setProduct] =useState("")
+const openModal = (product)=>{
     setProduct(product)
   }
   const closeModal =()=>{
     setProduct(false)
   }
- 
-  useEffect(()=>{
-   props.fetchProducts()
-    },[])
+
+  useEffect(()=>{props.fetchProducts()})
+  
   return (
     <Bounce left cascade>
     <div className="products-wrapper">
@@ -40,10 +39,10 @@ import fetchProducts from "../../store/actions/productsAction";
     </Bounce>
   );
 }
-const mapStateToProps=(state)=>{
+
+
+
+export default connect ((state)=>{
   return {products:state.products.filteredProducts}
   
-}
-
-
-export default connect (mapStateToProps,fetchProducts)(Products)
+},{fetchProducts,addToCart})(Products)

@@ -3,7 +3,7 @@ import { FETCH_PRODUCTS, FILTERBYORDER, FILTERBYSIZE } from "../actions/actionTy
 const productReducer =(state={},action)=>{
     switch (action.type){
         case FETCH_PRODUCTS:
-            return {products:action.payload,filteredProducts:action.data}
+            return {products:action.data,filteredProducts:action.data}
             case FILTERBYSIZE:
                 return {
                     ...state,

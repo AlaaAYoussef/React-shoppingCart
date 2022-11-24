@@ -1,12 +1,12 @@
+import {componentDidMount} from 'react'
 import { FETCH_PRODUCTS } from "./actionType";
 import {FILTERBYSIZE , FILTERBYORDER} from './actionType'
-const fetchProducts = () => {
-  return (dispatch) => {
-     fetch('/api/products').then((res) =>(res.json())).then(data => {
-        dispatch({ type: FETCH_PRODUCTS, payload: data })
-      })
-  }
-};
+ export const fetchProducts = () => {
+   return (dispatch)=>{
+      fetch('/api/products').then(res =>res.json()).then( data => {
+        dispatch({ type: FETCH_PRODUCTS, data: data })
+    })
+    }}
 
 export const filteredSize =(products,value)=>{
     return(dispatch)=>{
@@ -33,7 +33,7 @@ export const filteredOrder =(products,value)=>{
           } else {
             return a.id < b.id ? 1 : -1;
           }
-        });
+        })
         dispatch({
             type:FILTERBYORDER,
             data:{
@@ -48,4 +48,3 @@ export const filteredOrder =(products,value)=>{
 }
 
 
-export default fetchProducts;

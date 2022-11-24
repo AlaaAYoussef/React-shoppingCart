@@ -62,10 +62,7 @@ function App() {
     const clonedCartItems = [...cartItems]
    setCartItems(clonedCartItems.filter(p=> p.id != products.id))
   }
-  useEffect(() =>{
-    localStorage.setItem('cartItems',JSON.stringify(cartItems))
-
-  })
+ 
 
 
   return (
