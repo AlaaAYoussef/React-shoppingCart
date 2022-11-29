@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from 'react-modal'
 import "../../css/Cart/Cart.css";
 import FormCheckout from "../FormCheckout/FormCheckout";
 import Bounce from 'react-reveal/Bounce';
@@ -8,10 +9,15 @@ import { removeCart } from "../../store/actions/cartAction";
 
 function Cart(props) {
   const [checkoutForm, setChekoutForm] = useState(false);
+  const [order,setOrder]=useState(false)
   const [value,setvalue]=useState("")
   const submitOrder = (e) => {
+    const order ={
+      name:value.name,
+      email:value.email
+    }
     e.preventDefault();
-    console.log(value)
+    setOrder(order)
   };
     const handleChange =(e)=>{
         setvalue((prevState)=>({...prevState ,[e.target.name]:e.target.value}))
@@ -24,6 +30,9 @@ function Cart(props) {
     setChekoutForm(false);
     
   };
+  const closeModal =()=>{
+    setOrder(false)
+  }
  
 
   return (
@@ -66,6 +75,41 @@ function Cart(props) {
           <button onClick={() => setChekoutForm(true)}>select products</button>
         </div>
       </div>
+      <Modal isOpen={order} onRequestClose={closeModal}>
+        <div className="order-info">
+          <span className="close-icon" onClick={closeModal}>&times;</span>
+          <p className="alert-success">order done successfuly</p>
+          <table>
+            <tr>
+              <td>Name:</td>
+              <td>{order.name}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>{order.email}</td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td>{props.cartItems.reduce((a,p)=>{
+                return a+p.price
+              },0)}</td>
+            </tr>
+            <tr>
+             {props.cartItems.map(p=>(
+              <div className="cart-data">
+                <p>quantaty of this product:{p.qty}</p>
+                <p>title of this product:{p.title}</p>
+
+              </div>
+
+             ))}
+            </tr>
+          </table>
+
+
+        </div>
+
+      </Modal>
       </Bounce>
      
         <FormCheckout 
