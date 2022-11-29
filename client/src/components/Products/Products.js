@@ -1,4 +1,4 @@
-import React, { componentDidUpdate,componentDidMount, useState,componentWillReceiveProps, useEffect} from 'react';
+import React, { useState, useEffect,componentDidUpdate} from 'react';
 import '../../css/Products/Products.css'
 import ProductModal from './ProductModal'
 import Bounce from 'react-reveal/Bounce';
@@ -17,13 +17,17 @@ const openModal = (product)=>{
     setProduct(false)
   }
 
-  useEffect(()=>{props.fetchProducts()})
+useEffect(()=>{
+  props.fetchProducts()
+},[])
+
+
   
   return (
     <Bounce left cascade>
     <div className="products-wrapper">
       {props.products.map((product) => (
-        <div className="product-item" key={product.id}>
+        <div className="product-item" key={product._id}>
           <a href="#" onClick={()=>openModal(product)}>
           <img src={product.imgURL} alt={product.title} />
           </a>

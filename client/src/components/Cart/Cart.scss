@@ -59,3 +59,38 @@
     }
     
 }
+.order-info{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .close-icon {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        cursor: pointer;
+      }
+    .alert-success{
+        background-color: green;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+    table{
+        border:1px solid #c0c0c0;
+        tr{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #c0c0c0;
+            &:last-of-type{
+                border-bottom: 0;
+            }
+            td{
+                padding: 10px;
+            }
+
+        }
+    }
+}

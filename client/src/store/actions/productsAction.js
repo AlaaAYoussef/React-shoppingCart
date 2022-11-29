@@ -31,7 +31,7 @@ export const filteredOrder =(products,value)=>{
           } else if (value == "Highest") {
             return b.price - a.price;
           } else {
-            return a.id < b.id ? 1 : -1;
+            return a._id < b._id ? 1 : -1;
           }
         })
         dispatch({
