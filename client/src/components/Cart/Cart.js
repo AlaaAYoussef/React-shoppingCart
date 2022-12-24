@@ -5,6 +5,7 @@ import FormCheckout from "../FormCheckout/FormCheckout";
 import Bounce from 'react-reveal/Bounce';
 import { connect } from "react-redux";
 import { removeCart } from "../../store/actions/cartAction";
+import {createOrder,clearOrder} from '../../store/actions/orders'
 
 
 function Cart(props) {
@@ -16,8 +17,7 @@ function Cart(props) {
       name:value.name,
       email:value.email
     }
-    e.preventDefault();
-    setOrder(order)
+   props.createOrder(order)
   };
     const handleChange =(e)=>{
         setvalue((prevState)=>({...prevState ,[e.target.name]:e.target.value}))
@@ -31,7 +31,8 @@ function Cart(props) {
     
   };
   const closeModal =()=>{
-    setOrder(false)
+    props.clearOrder()
+    setChekoutForm(false)
   }
  
 
@@ -75,7 +76,7 @@ function Cart(props) {
           <button onClick={() => setChekoutForm(true)}>select products</button>
         </div>
       </div>
-      <Modal isOpen={order} onRequestClose={closeModal}>
+      <Modal isOpen={props.order} onRequestClose={closeModal}>
         <div className="order-info">
           <span className="close-icon" onClick={closeModal}>&times;</span>
           <p className="alert-success">order done successfuly</p>
@@ -127,7 +128,8 @@ function Cart(props) {
 
 export default connect((state)=>{
   return {
-    cartItems:state.cart.cartItems
+    cartItems:state.cart.cartItems,
+    order:state.order.order
   }
 
-},{removeCart})(Cart)
+},{removeCart,createOrder,clearOrder})(Cart)
