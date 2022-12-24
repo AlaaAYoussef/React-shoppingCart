@@ -3,7 +3,7 @@ function CartModal(props) {
     const {order,closeModal,cartItems}=props
   return (
     <>
-      <Modal isOpen={order} onRequestClose={closeModal}>
+      <Modal isOpen={props.order} onRequestClose={closeModal}>
         <div className="order-info">
           <span className="close-icon" onClick={closeModal}>
             &times;
