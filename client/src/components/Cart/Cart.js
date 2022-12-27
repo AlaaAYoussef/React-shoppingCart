@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import Modal from 'react-modal'
 import "../../css/Cart/Cart.css";
 import FormCheckout from "../FormCheckout/FormCheckout";
 import Bounce from 'react-reveal/Bounce';
 import { connect } from "react-redux";
 import { removeCart } from "../../store/actions/cartAction";
+import {createOrder,clearOrder} from '../../store/actions/orders'
+import { staticData } from "../../staticData";
 
 
 function Cart(props) {
   const [checkoutForm, setChekoutForm] = useState(false);
-  const [order,setOrder]=useState(false)
   const [value,setvalue]=useState("")
   const submitOrder = (e) => {
     const order ={
       name:value.name,
       email:value.email
     }
-    e.preventDefault();
-    setOrder(order)
+   props.createOrder(order)
   };
     const handleChange =(e)=>{
         setvalue((prevState)=>({...prevState ,[e.target.name]:e.target.value}))
@@ -31,7 +30,8 @@ function Cart(props) {
     
   };
   const closeModal =()=>{
-    setOrder(false)
+    props.clearOrder()
+    setChekoutForm(false)
   }
  
 
@@ -43,7 +43,7 @@ function Cart(props) {
         {props.cartItems.length == 0 ? (
           "Cart is Empty"
         ) : (
-          <p>There is {props.cartItems.length} in cart </p>
+          <p>{staticData.cartHeader}{props.cartItems.length} in cart </p>
         )}
       </div>
       <Bounce left cascade>
@@ -75,41 +75,7 @@ function Cart(props) {
           <button onClick={() => setChekoutForm(true)}>select products</button>
         </div>
       </div>
-      <Modal isOpen={order} onRequestClose={closeModal}>
-        <div className="order-info">
-          <span className="close-icon" onClick={closeModal}>&times;</span>
-          <p className="alert-success">order done successfuly</p>
-          <table>
-            <tr>
-              <td>Name:</td>
-              <td>{order.name}</td>
-            </tr>
-            <tr>
-              <td>Email:</td>
-              <td>{order.email}</td>
-            </tr>
-            <tr>
-              <td>Total:</td>
-              <td>{props.cartItems.reduce((a,p)=>{
-                return a+p.price
-              },0)}</td>
-            </tr>
-            <tr>
-             {props.cartItems.map(p=>(
-              <div className="cart-data">
-                <p>quantaty of this product:{p.qty}</p>
-                <p>title of this product:{p.title}</p>
-
-              </div>
-
-             ))}
-            </tr>
-          </table>
-
-
-        </div>
-
-      </Modal>
+   
       </Bounce>
      
         <FormCheckout 
@@ -127,7 +93,8 @@ function Cart(props) {
 
 export default connect((state)=>{
   return {
-    cartItems:state.cart.cartItems
+    cartItems:state.cart.cartItems,
+    order:state.order.order
   }
 
-},{removeCart})(Cart)
+},{removeCart,createOrder,clearOrder})(Cart)

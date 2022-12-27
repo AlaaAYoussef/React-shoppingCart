@@ -1,4 +1,4 @@
-import { ADD_CART } from "../actions/actionType";
+import { ADD_CART, CLEAR_CART } from "../actions/actionType";
 
 const addToCart =(state={
     initStateOfCart:JSON.parse(localStorage.getItem('cartItems'))|| []
@@ -6,6 +6,8 @@ const addToCart =(state={
     switch (action.type){
         case ADD_CART:
             return {cartItems:action.data.cartItems}
+        case CLEAR_CART:
+            return {...state,cartItems:[]}
             default:
                 return state
     }
